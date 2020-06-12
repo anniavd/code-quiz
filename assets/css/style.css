@@ -1,0 +1,61 @@
+* {
+    margin: 0;
+    padding: 0;
+  }
+  *{
+    box-sizing: border-box;
+  }
+
+  body{
+      width: 100%;
+  }
+   /*style header star*/
+header{
+    width: auto;
+    margin: 30px 20px;
+    display: flex;
+    justify-content:space-around;
+}
+header a{
+    width: auto;  
+    text-decoration: none;
+    color: rgb(36, 100, 84);
+    font-size: 20px;    
+}
+
+header h4{
+    width: auto;
+    
+    display: flex;
+    font-size: 18px;
+}
+ /*style header end*/
+  /*style main star*/
+main{
+    margin-top: 60px;
+}
+
+
+button {
+    width: auto;
+    background-color: rgb(36, 100, 84);
+    padding: 10px ;
+    margin-top: 24px;
+    cursor: pointer;
+    border-radius: 10px;  
+    text-align: center;
+   
+}
+
+button:hover {background-color: rgb(60, 187, 155)}
+
+.container {
+    text-align: center;
+  }
+.starquiz  p{
+     font-size: 16px;
+ }
+.starquiz  h2{
+   margin: 15px 15px;
+}
+ /*style main end*/
