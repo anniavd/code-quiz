@@ -37,8 +37,6 @@ function showQuestions(){
 
 }
 
-
-
 function starTimer(){
   var timecountdown= 100;
 
@@ -52,8 +50,7 @@ function starTimer(){
   },1000);
 }
 
-function results(){
-}
+function results(){}
 
 
 function ShowScore(){
