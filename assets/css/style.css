@@ -50,7 +50,8 @@ button {
 button:hover {background-color: rgb(60, 187, 155)}
 
 .container {
-    text-align: center;
+    margin: auto;
+    width: 500px;
   }
 .starquiz  p{
      font-size: 16px;
