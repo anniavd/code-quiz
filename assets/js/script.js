@@ -4,9 +4,8 @@ var timecountdown = 25;
 var index = 0;
 var timeInterval;
 var timeEl = document.querySelector("#count");
+var scoreFinal=document.getElementById("final-score");
 var buttonD = document.querySelector("#quiz");
-
-
 var showq = document.createElement("h3")//show question on the page
 var questionAnswer = document.querySelector("#showQ");
 var listAnswer = document.createElement("ol");//order list
@@ -20,14 +19,16 @@ var ans2 = document.createElement("button");
 var ans3 = document.createElement("button");
 var ans4 = document.createElement("button");
 
-var formEl = document.querySelector("#form");
-var formShowscore = document.querySelector("#infoUser");
+//var formEl = document.querySelector("#form");
+//var formShowscore = document.querySelector("#infoUser");
 //show the form the informacion
-  var texth2 = document.createElement("h1");
-  var p = document.createElement("p");
-  var input = document.createElement("input");
-  var submit = document.createElement("button");  
-  var formLabel = document.createElement("label")
+  /*var 
+ 
+  var input = document.createElement("input");   
+  var formLabel = document.createElement("label")*/
+ //var p = document.createElement("p");
+  var submit = document.querySelector("#sign-up");
+  var scoreForm=document.querySelector("#formScore")
   var messageUser= document.querySelector("#msg");//mensaje in the register
 
 var userinitialImput=document.querySelector("#user-initial");
@@ -101,7 +102,7 @@ function showQuestions() {
       //star countdown
  
 
-  console.log("Preparring Question at index:", index);
+  //console.log("Preparring Question at index:", index);
   //Question [i]
   showq.innerHTML = arrayquestion[index].question;
    
@@ -184,7 +185,7 @@ function starTimer() {
   timeInterval = setInterval(function () {
 
     timecountdown--;
-    console.log("Time Left: ", timecountdown)
+    //console.log("Time Left: ", timecountdown)
 
     timeEl.textContent = timecountdown;
  
@@ -210,23 +211,9 @@ function clearArea(){
 
 function ShowScore() {
   
-  texth2.textContent = "All Done!"
-  p.innerHTML = "Your finale score is" + highScore;
-  formLabel.textContent = "Enter initial:";
-  submit.textContent = "Submit";
+  scoreFinal.textContent=highScore;
+ 
   form.style.display="block";
-  //style  for elements
-  formLabel.setAttribute("style", "font-size:16px;margin:5px");
-  submit.setAttribute("style", "margin:5px");
-
-  formEl.appendChild(texth2);
-  formEl.appendChild(p);
-  formEl.appendChild(formLabel);
-  formEl.appendChild(input);
-  formEl.appendChild(submit);
-
-  // all the element container
-  formShowscore.appendChild(formEl);
 
 };
   //Show the las user register
