@@ -1,21 +1,20 @@
 document.body;
 var highScore = 100;
-var timecountdown = 100;
+var timecountdown = 5;
 var index = 0;
+var timeInterval;
 var timeEl = document.querySelector("#count");
 var buttonD = document.querySelector("#quiz");
+
+
 var showq = document.createElement("h3")//show question on the page
 var questionAnswer = document.querySelector("#showQ");
-
-var timeInterval;
-
-
 var listAnswer = document.createElement("ol");//order list
 var list1 = document.createElement("li");
 var list2 = document.createElement("li");
 var list3 = document.createElement("li");
 var list4 = document.createElement("li");
-
+//button for answer
 var ans1 = document.createElement("button");
 var ans2 = document.createElement("button");
 var ans3 = document.createElement("button");
@@ -23,6 +22,16 @@ var ans4 = document.createElement("button");
 
 var formEl = document.querySelector("#form");
 var formShowscore = document.querySelector("#infoUser");
+//show the form the informacion
+  var texth2 = document.createElement("h1");
+  var p = document.createElement("p");
+  var input = document.querySelector("#inicial");
+  var submit = document.createElement("button");  
+  var formLabel = document.createElement("label")
+  var messageUser= document.querySelector("#msg");//mensaje in the register
+
+var userinitialImput=document.querySelector("#user-initial");
+var score=document.querySelector("#user-score");
 
 //array object with question,answer and the correct answer
 
@@ -82,10 +91,11 @@ var arrayquestion = [
 //function show the question 
 
 function showQuestions() {
-
+   
   var removeQuiz = document.getElementById("star");
   removeQuiz.remove();
-  //star countdown
+
+    //star countdown
   starTimer(timecountdown);
 
   console.log("Preparring Question at index:", index);
@@ -116,11 +126,14 @@ function showQuestions() {
   ans3.addEventListener("click", Result);
   ans4.addEventListener("click", Result);
 
-}
+  
+ }
+
 
 //function check result 
 function Result() {
 
+   var newScore=0;
   // show the answer is correct or wrong
   //create the elements
   var correct = document.createElement("h6")
@@ -141,7 +154,8 @@ function Result() {
     questionAnswer.appendChild(correct);
     index++;
     console.log("Next Question's index:", index);
-    return
+    //return
+   
   }
 
   else {
@@ -157,12 +171,13 @@ function Result() {
 
     starTimer(timecountdown)
    
-    highScore = highScore - 10;
+    newScore = highScore - 10;
 
     questionAnswer.appendChild(wrong);
     index++;
     console.log("Next Question's index:", index);
-    return
+    //return
+    
   }
 
 };// end Result() fct def
@@ -185,18 +200,20 @@ function starTimer(howLong) {
 
 }
 
+
+//function clear quetsion and anserw
+
+/*function clearArea(){
+  var removeAnswer= document.getElementById("showQ");
+  removeAnswer.remove();
+}*/
+
 //function show the results to the user and save his initial
 
 function ShowScore() {
-  //create element for a form
-  var texth2 = document.createElement("h1");
-  var p = document.createElement("p");
-  var input = document.createElement("input");
-  var submit = document.createElement("button");
-  var formLabel = document.createElement("label")
-
+  
   texth2.textContent = "All Done!"
-  p.innerHTML = "Your finale score is" + highScore;
+  p.innerHTML = "Your finale score is" + newScore;
   formLabel.textContent = "Enter initial:";
   submit.textContent = "Submit";
 
@@ -213,17 +230,56 @@ function ShowScore() {
   // all the element container
   formShowscore.appendChild(formEl);
 
+};
+  //Show the las user register
 
-  //save in localStore
+function renderLastRegistered() {
+  var inicialUser=localStorage.getItem("initial");
+   var scoreUser= localStorage.getItem("score");
+  
 
-  //var saveInitialScore=localStorage.setItem();
+  if (inicialUser && scoreUser === null) {
+    return;
+  }
 
+  var userinitialImput=inicialUser;
+  var score=scoreUser;
 }
 
+ renderLastRegistered()
+  
+ // function show error message when the user register
 
+  function displayMessage(type, message) {
+   messageUser.textContent = message;
+   messageUser.setAttribute("class", type);
+  };
+
+//function save localStorage
+
+ function saveInformation(){
+   var inicialUser=document.querySelector("#inicial").value;
+   var scoreUser= newScore;
+   if (inicialUser === "") {
+    displayMessage("error", "Initial cannot be blank");
+  
+  } else {
+    displayMessage("success", "Registered successfully");
+
+    localStorage.setItem("initial",JSON.stringify(inicialUser) );
+    localStorage.setItem("score",JSON.stringify(scoreUser));
+    renderLastRegistered();
+  }
+  JSON.stringify(dataFromLocal)
+ };
+
+ 
 
 buttonD.addEventListener("click", showQuestions);
   // add event listern to the #quiz
   // clear the area 
   // showQuestions()
   // startTimer()
+  submit.addEventListener("click",saveInformation);
+  document.getElementById("linkscore").addEventListener("click",renderLastRegistered);
+   
