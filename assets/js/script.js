@@ -1,6 +1,6 @@
-document.body;
+
 var highScore = 100;
-var timecountdown = 100;
+var timecountdown = 25;
 var index = 0;
 var timeInterval;
 var timeEl = document.querySelector("#count");
@@ -32,6 +32,7 @@ var formShowscore = document.querySelector("#infoUser");
 
 var userinitialImput=document.querySelector("#user-initial");
 var score=document.querySelector("#user-score");
+var form=document.querySelector("#infoUser");
 
 //array object with question,answer and the correct answer
 
@@ -95,9 +96,10 @@ function showQuestions() {
   if(index===0){
    var removeQuiz = document.getElementById("star");
   removeQuiz.remove(); 
+   starTimer();
   }
       //star countdown
-  starTimer(timecountdown);
+ 
 
   console.log("Preparring Question at index:", index);
   //Question [i]
@@ -133,8 +135,7 @@ function showQuestions() {
 //function check result 
 function Result() {
 
-   var newScore=0;
-    
+      
     //create element for show wrong answwer
     var correct = document.createElement("h6")     
     var wrong = document.createElement("h6")
@@ -147,34 +148,36 @@ function Result() {
 
   //condicional for comparison the user selection with the correct answer
   if (this.textContent === arrayquestion[index].answer) {
-        
-        
+              
     questionAnswer.appendChild(correct);
     index++;
     if (index===arrayquestion.length){
       ShowScore();
     }
     else{     
-      clearArea();
+     // clearArea();
       showQuestions()
     }
   }
   else {  
-    clearInterval(timeInterval)
+    console.log("wrong" ,timecountdown);
+   //clearInterval(timeInterval)
     timecountdown = timecountdown - 10;
-    starTimer(timecountdown)
-    highScore = highScore - 10;
+    console.log("wrong after" ,timecountdown);
+    timeEl.textContent = timecountdown;
+ 
+      highScore = highScore - 10;
 
     questionAnswer.appendChild(wrong);
     index++;
-    clearArea()  
+    //clearArea()  
     showQuestions()  
   }
 };// end Result() fct def
 
 
 
-function starTimer(timecountdown) {
+function starTimer() {
 
   timeInterval = setInterval(function () {
 
@@ -182,9 +185,10 @@ function starTimer(timecountdown) {
     console.log("Time Left: ", timecountdown)
 
     timeEl.textContent = timecountdown;
-  
-    if (timecountdown=== 0) {
+ 
+    if (timecountdown=== 0) {      
       ShowScore();
+      clearArea();
       clearInterval(timeInterval)
     }
   }, 1000);
@@ -197,7 +201,7 @@ function starTimer(timecountdown) {
 
 function clearArea(){
   var removeAnswer= document.getElementById("showQ");
-  removeAnswer="";
+  removeAnswer.style.display="none";
 }
 
 //function show the results to the user and save his initial
@@ -205,10 +209,10 @@ function clearArea(){
 function ShowScore() {
   
   texth2.textContent = "All Done!"
-  p.innerHTML = "Your finale score is" + timecountdown;
+  p.innerHTML = "Your finale score is" + highScore;
   formLabel.textContent = "Enter initial:";
   submit.textContent = "Submit";
-
+  form.style.display="block";
   //style  for elements
   formLabel.setAttribute("style", "font-size:16px;margin:5px");
   submit.setAttribute("style", "margin:5px");
@@ -250,7 +254,8 @@ function renderLastRegistered() {
 //function save localStorage
 
  function saveInformation(){
-   var inicialUser=document.querySelector("#inicial").value;
+   
+   var inicialUser=document.querySelector("#inicial").valu;
    var scoreUser= newScore;
    if (inicialUser === "") {
     displayMessage("error", "Initial cannot be blank");
@@ -266,12 +271,13 @@ function renderLastRegistered() {
  };
 
  
-
+// add event listern to the #quiz
 buttonD.addEventListener("click", showQuestions);
-  // add event listern to the #quiz
+  
   // clear the area 
   // showQuestions()
   // startTimer()
   submit.addEventListener("click",saveInformation);
   document.getElementById("linkscore").addEventListener("click",renderLastRegistered);
    
+form.style.display="none";
