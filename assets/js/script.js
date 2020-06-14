@@ -1,6 +1,6 @@
 document.body;
 var highScore = 100;
-var timecountdown = 5;
+var timecountdown = 100;
 var index = 0;
 var timeInterval;
 var timeEl = document.querySelector("#count");
@@ -25,7 +25,7 @@ var formShowscore = document.querySelector("#infoUser");
 //show the form the informacion
   var texth2 = document.createElement("h1");
   var p = document.createElement("p");
-  var input = document.querySelector("#inicial");
+  var input = document.createElement("input");
   var submit = document.createElement("button");  
   var formLabel = document.createElement("label")
   var messageUser= document.querySelector("#msg");//mensaje in the register
@@ -96,9 +96,7 @@ function showQuestions() {
    var removeQuiz = document.getElementById("star");
   removeQuiz.remove(); 
   }
-  
-
-    //star countdown
+      //star countdown
   starTimer(timecountdown);
 
   console.log("Preparring Question at index:", index);
@@ -129,7 +127,6 @@ function showQuestions() {
   ans3.addEventListener("click", Result);
   ans4.addEventListener("click", Result);
 
-  
  }
 
 
@@ -141,7 +138,8 @@ function Result() {
   //create the elements
   var correct = document.createElement("h6")
   var wrong = document.createElement("h6")
-
+  
+ //elements text
   wrong.textContent = "Wrong";
   correct.textContent = "Correct";
 
@@ -151,95 +149,41 @@ function Result() {
 
   //condicional for comparison the user selection with the correct answer
   if (this.textContent === arrayquestion[index].answer) {
-    console.log(" --- Test Taker's Answer: ", ans1.textContent);
-
-    console.log("Correct Answer!")
+        
     questionAnswer.appendChild(correct);
     index++;
     if (index===arrayquestion.length){
       ShowScore();
     }
-    else{
-     // NextQuestion();
+    else{     
       clearArea();
       showQuestions()
     }
-    console.log("Next Question's index:", index);
-    //return
-   
   }
-
-  else {
-   // console.log("Incorrect Answer!!")
-
-    //console.log("BEFORE CLEAR", timecountdown)
+  else {   
     clearInterval(timeInterval)
-    //console.log("AFTER CLEAR", timecountdown)
-
     timecountdown = timecountdown - 10;
-
-    //console.log("AFTER PENALTY", timecountdown)
-
     starTimer(timecountdown)
-   
-    newScore = highScore - 10;
-
+    highScore = highScore - 10;
     questionAnswer.appendChild(wrong);
     index++;
-    clearArea()
-   // NextQuestion();  
+    clearArea()  
     showQuestions()  
-   // console.log("Next Question's index:", index);
-    //return
-   
   }
-
 };// end Result() fct def
 
-function NextQuestion() {
-  arrayquestion[index];
-  console.log(arrayquestion[index]);
-  showq.innerHTML = arrayquestion[index].question;
-   
-  // answers for the question [i]
-  ans1.textContent = arrayquestion[index].choices[0]
-  ans2.textContent = arrayquestion[index].choices[1]
-  ans3.textContent = arrayquestion[index].choices[2]
-  ans4.textContent = arrayquestion[index].choices[3]
-  
-  // show the dynamic element on the page
-  list1.appendChild(ans1);
-  list2.appendChild(ans2);
-  list3.appendChild(ans3);
-  list4.appendChild(ans4);
-  listAnswer.appendChild(list1);
-  listAnswer.appendChild(list2);
-  listAnswer.appendChild(list3);
-  listAnswer.appendChild(list4);
-  questionAnswer.appendChild(showq);
-  questionAnswer.appendChild(listAnswer);
-
-// listener when select a answer
-  ans1.addEventListener("click", Result);
-  ans2.addEventListener("click", Result);
-  ans3.addEventListener("click", Result);
-  ans4.addEventListener("click", Result);
-
-  };
 
 
-
-
-function starTimer(howLong) {
+function starTimer(timecountdown) {
 
   timeInterval = setInterval(function () {
 
-    howLong--;
-    console.log("Time Left: ", howLong)
+    timecountdown--;
+    console.log("Time Left: ", timecountdown)
 
-    timeEl.textContent = howLong;
+    timeEl.textContent = timecountdown;
   
-    if (timecountdown === 0) {
+    if (timecountdown=== 0) {
       ShowScore();
       clearInterval(timeInterval)
     }
@@ -248,11 +192,12 @@ function starTimer(howLong) {
 }
 
 
+
 //function clear quetsion and anserw
 
 function clearArea(){
   var removeAnswer= document.getElementById("showQ");
-  removeAnswer.remove();
+  removeAnswer="";
 }
 
 //function show the results to the user and save his initial
@@ -260,7 +205,7 @@ function clearArea(){
 function ShowScore() {
   
   texth2.textContent = "All Done!"
-  p.innerHTML = "Your finale score is" + newScore;
+  p.innerHTML = "Your finale score is" + timecountdown;
   formLabel.textContent = "Enter initial:";
   submit.textContent = "Submit";
 
