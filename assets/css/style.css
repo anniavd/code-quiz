@@ -53,6 +53,12 @@ button:hover {background-color: rgb(60, 187, 155)}
     margin: auto;
     width: 500px;
   }
+.starquiz{
+      margin-top: 60px;
+  }
+  .starquiz h2{
+      text-align: center;
+  }
 .starquiz  p{
      font-size: 16px;
  }
