@@ -92,8 +92,11 @@ var arrayquestion = [
 
 function showQuestions() {
    
-  var removeQuiz = document.getElementById("star");
-  removeQuiz.remove();
+  if(index===0){
+   var removeQuiz = document.getElementById("star");
+  removeQuiz.remove(); 
+  }
+  
 
     //star countdown
   starTimer(timecountdown);
@@ -101,7 +104,7 @@ function showQuestions() {
   console.log("Preparring Question at index:", index);
   //Question [i]
   showq.innerHTML = arrayquestion[index].question;
-
+   
   // answers for the question [i]
   ans1.textContent = arrayquestion[index].choices[0]
   ans2.textContent = arrayquestion[index].choices[1]
@@ -153,6 +156,14 @@ function Result() {
     console.log("Correct Answer!")
     questionAnswer.appendChild(correct);
     index++;
+    if (index===arrayquestion.length){
+      ShowScore();
+    }
+    else{
+     // NextQuestion();
+      clearArea();
+      showQuestions()
+    }
     console.log("Next Question's index:", index);
     //return
    
@@ -175,12 +186,48 @@ function Result() {
 
     questionAnswer.appendChild(wrong);
     index++;
-    console.log("Next Question's index:", index);
+    clearArea()
+   // NextQuestion();  
+    showQuestions()  
+   // console.log("Next Question's index:", index);
     //return
-    
+   
   }
 
 };// end Result() fct def
+
+function NextQuestion() {
+  arrayquestion[index];
+  console.log(arrayquestion[index]);
+  showq.innerHTML = arrayquestion[index].question;
+   
+  // answers for the question [i]
+  ans1.textContent = arrayquestion[index].choices[0]
+  ans2.textContent = arrayquestion[index].choices[1]
+  ans3.textContent = arrayquestion[index].choices[2]
+  ans4.textContent = arrayquestion[index].choices[3]
+  
+  // show the dynamic element on the page
+  list1.appendChild(ans1);
+  list2.appendChild(ans2);
+  list3.appendChild(ans3);
+  list4.appendChild(ans4);
+  listAnswer.appendChild(list1);
+  listAnswer.appendChild(list2);
+  listAnswer.appendChild(list3);
+  listAnswer.appendChild(list4);
+  questionAnswer.appendChild(showq);
+  questionAnswer.appendChild(listAnswer);
+
+// listener when select a answer
+  ans1.addEventListener("click", Result);
+  ans2.addEventListener("click", Result);
+  ans3.addEventListener("click", Result);
+  ans4.addEventListener("click", Result);
+
+  };
+
+
 
 
 function starTimer(howLong) {
@@ -203,10 +250,10 @@ function starTimer(howLong) {
 
 //function clear quetsion and anserw
 
-/*function clearArea(){
+function clearArea(){
   var removeAnswer= document.getElementById("showQ");
   removeAnswer.remove();
-}*/
+}
 
 //function show the results to the user and save his initial
 
