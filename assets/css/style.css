@@ -16,6 +16,7 @@ header{
     display: flex;
     justify-content:space-around;
 }
+
 header a{
     width: auto;  
     text-decoration: none;
@@ -33,6 +34,8 @@ header h4{
   /*style main star*/
 main{
     margin-top: 60px;
+    display: flex;
+    flex:1;
 }
 
 
@@ -52,9 +55,11 @@ button:hover {background-color: rgb(60, 187, 155)}
 .container {
     margin: auto;
     width: 500px;
+    flex:1;
   }
 .starquiz{
-      margin-top: 60px;
+      margin-top: 60px;     
+      flex:1;
   }
   .starquiz h2{
       text-align: center;
@@ -65,4 +70,17 @@ button:hover {background-color: rgb(60, 187, 155)}
 .starquiz  h2{
    margin: 15px 15px;
 }
+
+.formScore{
+    margin-top: 60px;    
+    flex:1;
+}
+.formScore h1{
+    font-size:20px ;
+}
+.formScore label,p{
+  font-size:16px;
+  margin:5px  
+}
+
  /*style main end*/
