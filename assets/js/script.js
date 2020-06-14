@@ -134,7 +134,6 @@ function showQuestions() {
 
 //function check result 
 function Result() {
-
       
     //create element for show wrong answwer
     var correct = document.createElement("h6")     
@@ -146,6 +145,7 @@ function Result() {
     correct.setAttribute("Style", "font-size:20px ;margin:15px;color:gray; text-decoration: underline");
     wrong.setAttribute("Style", "font-size:20px ;margin:15px;color:gray; text-decoration: underline");
 
+
   //condicional for comparison the user selection with the correct answer
   if (this.textContent === arrayquestion[index].answer) {
               
@@ -155,27 +155,29 @@ function Result() {
       ShowScore();
     }
     else{     
-     // clearArea();
+    
       showQuestions()
     }
   }
   else {  
-    console.log("wrong" ,timecountdown);
-   //clearInterval(timeInterval)
+      // the user selection the wrong answer      
+     // subtract 10 for time
     timecountdown = timecountdown - 10;
-    console.log("wrong after" ,timecountdown);
+    //console.log("wrong after" ,timecountdown);
     timeEl.textContent = timecountdown;
- 
-      highScore = highScore - 10;
+
+    // subtract 10 for highScore
+    highScore = highScore - 10;
 
     questionAnswer.appendChild(wrong);
     index++;
-    //clearArea()  
+     
     showQuestions()  
   }
 };// end Result() fct def
 
 
+//shor the current time
 
 function starTimer() {
 
@@ -271,12 +273,9 @@ function renderLastRegistered() {
  };
 
  
-// add event listern to the #quiz
+// add event listener to star quiz button
 buttonD.addEventListener("click", showQuestions);
-  
-  // clear the area 
-  // showQuestions()
-  // startTimer()
+  //add event listener localStore save
   submit.addEventListener("click",saveInformation);
   document.getElementById("linkscore").addEventListener("click",renderLastRegistered);
    
