@@ -24,7 +24,7 @@ var ans4 = document.createElement("button");
 var formEl = document.querySelector("#form");
 var formShowscore = document.querySelector("#infoUser");
 
-
+//array object with question,answer and the correct answer
 
 var arrayquestion = [
   {
@@ -79,8 +79,7 @@ var arrayquestion = [
   }];
 
 
-//arrayquestion[index];// display arrayquestion[index], it will give you the first question. once the click happened,and you checked the asnwer, then put index++;
-// now arrayquestion[index] means the second question. now the function will check the the click, the answer, and then index++ again. answer !== -10 points.     
+//function show the question 
 
 function showQuestions() {
 
@@ -98,8 +97,8 @@ function showQuestions() {
   ans2.textContent = arrayquestion[index].choices[1]
   ans3.textContent = arrayquestion[index].choices[2]
   ans4.textContent = arrayquestion[index].choices[3]
-  // console.log(arrayquestion[index]);
-
+  
+  // show the dynamic element on the page
   list1.appendChild(ans1);
   list2.appendChild(ans2);
   list3.appendChild(ans3);
@@ -111,6 +110,7 @@ function showQuestions() {
   questionAnswer.appendChild(showq);
   questionAnswer.appendChild(listAnswer);
 
+// listener when select a answer
   ans1.addEventListener("click", Result);
   ans2.addEventListener("click", Result);
   ans3.addEventListener("click", Result);
@@ -120,24 +120,20 @@ function showQuestions() {
 
 //function check result 
 function Result() {
-  // show the answer is correct or wrong
-  console.log("THIS is what we just clicked on:", this)
 
+  // show the answer is correct or wrong
+  //create the elements
   var correct = document.createElement("h6")
   var wrong = document.createElement("h6")
-
 
   wrong.textContent = "Wrong";
   correct.textContent = "Correct";
 
-
+ //style for the elements
   wrong.setAttribute("Style", "font-size:20px ;margin:15px;color:gray; text-decoration: underline");
   correct.setAttribute("Style", "font-size:20px ;margin:15px;color:gray; text-decoration: underline");
 
-
-
-  console.log("  Correct Answer: ", arrayquestion[index].answer)
-
+  //condicional for comparison the user selection with the correct answer
   if (this.textContent === arrayquestion[index].answer) {
     console.log(" --- Test Taker's Answer: ", ans1.textContent);
 
@@ -149,52 +145,37 @@ function Result() {
   }
 
   else {
-    console.log("Incorrect Answer!!")
+   // console.log("Incorrect Answer!!")
 
-
-    console.log("BEFORE CLEAR", timecountdown)
+    //console.log("BEFORE CLEAR", timecountdown)
     clearInterval(timeInterval)
-    console.log("AFTER CLEAR", timecountdown)
-
+    //console.log("AFTER CLEAR", timecountdown)
 
     timecountdown = timecountdown - 10;
 
-
-    console.log("AFTER PENALTY", timecountdown)
+    //console.log("AFTER PENALTY", timecountdown)
 
     starTimer(timecountdown)
-
    
-
     highScore = highScore - 10;
 
     questionAnswer.appendChild(wrong);
     index++;
     console.log("Next Question's index:", index);
     return
-
   }
-
-
 
 };// end Result() fct def
 
 
-
-
-
 function starTimer(howLong) {
-
 
   timeInterval = setInterval(function () {
 
     howLong--;
     console.log("Time Left: ", howLong)
 
-
-
     timeEl.textContent = howLong;
-
   
     if (timecountdown === 0) {
       ShowScore();
@@ -204,8 +185,7 @@ function starTimer(howLong) {
 
 }
 
-//function results(){}
-
+//function show the results to the user and save his initial
 
 function ShowScore() {
   //create element for a form
@@ -220,15 +200,15 @@ function ShowScore() {
   formLabel.textContent = "Enter initial:";
   submit.textContent = "Submit";
 
-  //input.setAttribute()
+  //style  for elements
   formLabel.setAttribute("style", "font-size:16px;margin:5px");
   submit.setAttribute("style", "margin:5px");
+
   formEl.appendChild(texth2);
   formEl.appendChild(p);
   formEl.appendChild(formLabel);
   formEl.appendChild(input);
   formEl.appendChild(submit);
-
 
   // all the element container
   formShowscore.appendChild(formEl);
