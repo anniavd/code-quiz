@@ -134,21 +134,20 @@ function showQuestions() {
 function Result() {
 
    var newScore=0;
-  // show the answer is correct or wrong
-  //create the elements
-  var correct = document.createElement("h6")
-  var wrong = document.createElement("h6")
-  
- //elements text
-  wrong.textContent = "Wrong";
-  correct.textContent = "Correct";
-
- //style for the elements
-  wrong.setAttribute("Style", "font-size:20px ;margin:15px;color:gray; text-decoration: underline");
-  correct.setAttribute("Style", "font-size:20px ;margin:15px;color:gray; text-decoration: underline");
+    
+    //create element for show wrong answwer
+    var correct = document.createElement("h6")     
+    var wrong = document.createElement("h6")
+    wrong.textContent = "Wrong";
+    correct.textContent = "Correct";
+    questionAnswer.innerHTML="";
+    //style for the elements
+    correct.setAttribute("Style", "font-size:20px ;margin:15px;color:gray; text-decoration: underline");
+    wrong.setAttribute("Style", "font-size:20px ;margin:15px;color:gray; text-decoration: underline");
 
   //condicional for comparison the user selection with the correct answer
   if (this.textContent === arrayquestion[index].answer) {
+        
         
     questionAnswer.appendChild(correct);
     index++;
@@ -160,11 +159,12 @@ function Result() {
       showQuestions()
     }
   }
-  else {   
+  else {  
     clearInterval(timeInterval)
     timecountdown = timecountdown - 10;
     starTimer(timecountdown)
     highScore = highScore - 10;
+
     questionAnswer.appendChild(wrong);
     index++;
     clearArea()  
