@@ -3,13 +3,14 @@ var highScore = 100;
 var timecountdown = 25;
 var index = 0;
 var timeInterval;
-var timeEl = document.querySelector("#count");
-var scoreFinal=document.getElementById("final-score");
-var buttonD = document.querySelector("#quiz");
+var timeEl = document.querySelector("#count");//time
+var scoreFinal=document.getElementById("final-score");//show the final score
+var buttonD = document.querySelector("#quiz"); //button star quiz
+var buttonHigScoreView=document.querySelector("#linkscore");
 var showq = document.createElement("h3")//show question on the page
 var questionAnswer = document.querySelector("#showQ");
 var listAnswer = document.createElement("ol");//order list
-var list1 = document.createElement("li");
+var list1 = document.createElement("li");//list
 var list2 = document.createElement("li");
 var list3 = document.createElement("li");
 var list4 = document.createElement("li");
@@ -18,22 +19,17 @@ var ans1 = document.createElement("button");
 var ans2 = document.createElement("button");
 var ans3 = document.createElement("button");
 var ans4 = document.createElement("button");
+var input = document.createElement("input"); 
 
-//var formEl = document.querySelector("#form");
-//var formShowscore = document.querySelector("#infoUser");
-//show the form the informacion
-  /*var 
- 
-  var input = document.createElement("input");   
-  var formLabel = document.createElement("label")*/
- //var p = document.createElement("p");
-  var submit = document.querySelector("#sign-up");
-  var scoreForm=document.querySelector("#formScore")
-  var messageUser= document.querySelector("#msg");//mensaje in the register
+var formLabel = document.createElement("label")
+var submit = document.querySelector("#sign-up");
+var scoreForm=document.querySelector("#formScore")
+ //message in the register
 
 var userinitialImput=document.querySelector("#user-initial");
 var score=document.querySelector("#user-score");
 var form=document.querySelector("#infoUser");
+
 
 //array object with question,answer and the correct answer
 
@@ -99,11 +95,8 @@ function showQuestions() {
   removeQuiz.remove(); 
    starTimer();
   }
-      //star countdown
- 
-
-  //console.log("Preparring Question at index:", index);
-  //Question [i]
+   
+   //Question [i]
   showq.innerHTML = arrayquestion[index].question;
    
   // answers for the question [i]
@@ -163,13 +156,16 @@ function Result() {
   else {  
       // the user selection the wrong answer      
      // subtract 10 for time
-    timecountdown = timecountdown - 10;
+     if(timecountdown>=10){
+       timecountdown = timecountdown - 10;
+     }
+    
     //console.log("wrong after" ,timecountdown);
     timeEl.textContent = timecountdown;
 
     // subtract 10 for highScore
     highScore = highScore - 10;
-
+  console.log(highScore)
     questionAnswer.appendChild(wrong);
     index++;
      
@@ -190,14 +186,13 @@ function starTimer() {
     timeEl.textContent = timecountdown;
  
     if (timecountdown=== 0) {      
-      ShowScore();
-      clearArea();
+      ShowScore()
+     clearArea();
       clearInterval(timeInterval)
     }
   }, 1000);
 
 }
-
 
 
 //function clear quetsion and anserw
@@ -210,12 +205,10 @@ function clearArea(){
 //function show the results to the user and save his initial
 
 function ShowScore() {
-  
+  //get the final score for the user
   scoreFinal.textContent=highScore;
- 
-  form.style.display="block";
-  document.querySelector("#form").hide();
-
+   //show the form
+   form.style.display="block";
 };
   //Show the las user register
 
@@ -223,50 +216,49 @@ function renderLastRegistered() {
   var inicialUser=localStorage.getItem("initial");
    var scoreUser= localStorage.getItem("score");
   
-
   if (inicialUser && scoreUser === null) {
     return;
   }
 
   var userinitialImput=inicialUser;
   var score=scoreUser;
-}
+    
+};
 
- renderLastRegistered()
-  
- // function show error message when the user register
-
-  function displayMessage(type, message) {
-   messageUser.textContent = message;
-   messageUser.setAttribute("class", type);
-  };
-
+    
 //function save localStorage
 
  function saveInformation(){
    
    var inicialUser=document.querySelector("#initialUser").value;
-   console.log("Initial user input: "+ inicialUser);
-
-   var scoreUser= newScore;
+   
+   var scoreUser= highScore;
+    //check for no  let empty
    if (inicialUser === "") {
-    displayMessage("error", "Initial cannot be blank");
-  
+    
+    alert("Initial cannot be blank");
+    
   } else {
-    displayMessage("success", "Registered successfully");
+    alert("Registered successfully");
 
+    //conversion to object
     localStorage.setItem("initial",JSON.stringify(inicialUser) );
     localStorage.setItem("score",JSON.stringify(scoreUser));
     renderLastRegistered();
-  }
-  
- };
+     }
+  };
 
  
 // add event listener to star quiz button
 buttonD.addEventListener("click", showQuestions);
-  //add event listener localStore save
-  submit.addEventListener("click",saveInformation);
-  document.getElementById("linkscore").addEventListener("click",renderLastRegistered);
+  
+  
+buttonHigScoreView.addEventListener("click",renderLastRegistered);
    
 form.style.display="none";
+
+
+submit.addEventListener("click",(event)=>{
+  event.preventDefault();
+  saveInformation();
+})
