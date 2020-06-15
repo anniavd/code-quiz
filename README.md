@@ -11,9 +11,9 @@ You will be penalized 2 times in the quiz. The first penalty is if you answer th
 
  ![Homepage](/assets/images/home-page.jpg)
  ______________________________________________________________________________________
- Visit the site! Code Quiz](https://anniavd.github.io/code-quiz/.)
+ Visit the site![Code Quiz](https://anniavd.github.io/code-quiz/.)
 
-________________________________________________________________________________________
+_________________________________________________________________________
 
 
 shows a question with the possible answers to be selected by the user
