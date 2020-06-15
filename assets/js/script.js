@@ -214,6 +214,7 @@ function ShowScore() {
   scoreFinal.textContent=highScore;
  
   form.style.display="block";
+  document.querySelector("#form").hide();
 
 };
   //Show the las user register
@@ -244,7 +245,9 @@ function renderLastRegistered() {
 
  function saveInformation(){
    
-   var inicialUser=document.querySelector("#inicial").valu;
+   var inicialUser=document.querySelector("#initialUser").value;
+   console.log("Initial user input: "+ inicialUser);
+
    var scoreUser= newScore;
    if (inicialUser === "") {
     displayMessage("error", "Initial cannot be blank");
@@ -256,7 +259,7 @@ function renderLastRegistered() {
     localStorage.setItem("score",JSON.stringify(scoreUser));
     renderLastRegistered();
   }
-  JSON.stringify(dataFromLocal)
+  
  };
 
  
