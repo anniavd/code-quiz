@@ -97,4 +97,68 @@ button:hover {background-color: rgb(60, 187, 155)}
 
  /*style main end*/
 
- 
+ /*MEdiaQueries*/
+/* MEDIA QUERY FOR SMALLER DESKTOP SCREENS AND SMALLER */
+@media screen and (max-width: 980px) {/* this will be applied on any screen smaller than 980px */
+    header {
+          width: 100%;
+      
+       }
+    
+     main{
+        
+    flex:1  100%;
+    }
+   
+  }
+  
+  
+  @media screen and (max-width: 768px) { /* this will be applied on any screen between 768px and 575px */
+    
+    header {
+      width: 100%;
+  
+    }
+    
+    main{
+        
+        flex:1  100%;
+        }
+        header a{
+       
+            font-size: 35px;    
+        }
+        
+        header h4{
+            
+            font-size: 24px;
+        }
+        
+        .information {
+           
+            font-size: 24px;
+          
+        }
+}
+  
+  @media screen and (max-width: 575px) { 
+    
+        
+        header a{
+       
+            font-size: 35px;    
+        }
+        
+        header h4{
+            
+            font-size: 24px;
+        }
+        
+        .information {
+           
+            font-size: 24px;
+          
+        }
+    
+}
+   
