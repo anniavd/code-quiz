@@ -10,7 +10,7 @@
 </head>
 <body >
   <header class="header">
-      <a  id="linkscore" href="">View high scores</a>
+    <button id="linkscore" class="information"> View high scores </button> 
       <h4>Time: <span id="count">0</span></h4>
   </header>
 
@@ -26,10 +26,12 @@
        </div>
        <div id="infoUser">
         <form id="form"  class="formScore">
-          <h1>All Done!</h1>          
-          <p>Your finale score is:</p>  
+          <h1>All Done!</h1>   
+          <p>Your final score is <span id="final-score"></span></p>      
+           
           <label id="initial">Enter initial:</label>
-          <input  type="text"   name="Submit"    id="initialUser"   placeholder="Av" />         
+          <input  type="text"   name="initial"    id="initialUser"   placeholder="AV" />   
+          <button id="sign-up">Submit</button>      
        </form> 
        </div>   
     </main>          
