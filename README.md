@@ -10,5 +10,19 @@ You will be penalized 2 times in the quiz. The first penalty is if you answer th
 
 
  ![Homepage](/assets/images/home-page.jpg)
- _____________________________________________________________________
+ ______________________________________________________________________________________
  Visit the site! Code Quiz](https://anniavd.github.io/code-quiz//)
+
+________________________________________________________________________________________
+
+
+shows a question with the possible answers to be selected by the user
+
+ ![show the question wit possible answer](/assets/images/question-answers.jpg)
+ ________________________________________________________________________________________
+
+The user can save their score and initials by displaying a form.
+> - An alert will be displayed to the user if they do not type their initials.
+> - An alert will be displayed to the user that their initials have been saved.
+
+ ![show the final score](/assets/images/question-answers.jpg)
