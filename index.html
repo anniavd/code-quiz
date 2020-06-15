@@ -11,27 +11,29 @@
 <body >
   <header class="header">
     <button id="linkscore" class="information"> View high scores </button> 
-      <h4>Time: <span id="count">0</span></h4>
+      <h4>Time: <span id="count"></span></h4>
   </header>
 
     <main  class="container" id="main">
+      <div id="questionAns"> 
       <div class="starquiz" id="star">
           <h2 id="h1star">Coding Quiz Challenge </h2>
           <p> Try to answer the following code-related question within the time limit.</br>Keep in mind that the incorrect answers will penalize your score/time by ten seconds!</p>
           <button id="quiz"> Star Quiz</button>
        </div> 
        <div id="showQ">  
-         <ol id="listOrd">           
-         </ol>       
-       </div>
-       <div id="infoUser">
+        <ol id="listOrd">           
+        </ol>       
+      </div>
+    </div>
+      <div id="infoUser">
         <form id="form"  class="formScore">
           <h1>All Done!</h1>   
-          <p>Your final score is <span id="final-score"></span></p>      
-           
+          <p>Your final score is <span id="final-score"></span></p>    
+                  
           <label id="initial">Enter initial:</label>
           <input  type="text"   name="initial"    id="initialUser"   placeholder="AV" />   
-          <button id="sign-up">Submit</button>      
+          <button id="sign-up" type="submit">Submit</button>      
        </form> 
        </div>   
     </main>          
