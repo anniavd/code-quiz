@@ -11,7 +11,7 @@ You will be penalized 2 times in the quiz. The first penalty is if you answer th
 
  ![Homepage](/assets/images/home-page.jpg)
  ______________________________________________________________________________________
- Visit the site!(https://anniavd.github.io/code-quiz/.)
+ Visit the site![Code Quiz](https://anniavd.github.io/code-quiz/)
 
 
 
@@ -26,3 +26,8 @@ The user can save their score and initials by displaying a form.
 > - An alert will be displayed to the user that their initials have been saved.
 
  ![show the final score](/assets/images/score-final.jpg)
+
+
+ The user can see all the time the **Highscore** doing click on the link **View High Score**.
+  ![show the final score](/assets/images/highscore.jpg)
+

@@ -239,13 +239,7 @@ function renderLastRegistered() {
 
   listScore = JSON.parse(localStorage.getItem("Scores"));
 
-
- // if (listScore) {
-
- // }
-
-
-};
+ };
 
 
 //function save localStorage

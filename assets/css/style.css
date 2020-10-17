@@ -21,7 +21,7 @@ header a{
     width: auto;  
     text-decoration: none;
     color: rgb(36, 100, 84);
-    font-size: 30px;    
+    font-size: 38px;    
 }
 
 header h4{
@@ -47,19 +47,22 @@ main{
     flex:1;
 }
 
-
+h3{
+    font-size: 25px;
+}
 button {
     width: auto;
-    background-color: rgb(36, 100, 84);
+    background-color: rgb(57, 165, 36);
     padding: 10px ;
     margin-top: 24px;
     cursor: pointer;
     border-radius: 10px;  
     text-align: center;
+    font-size: 20px;
    
 }
 
-button:hover {background-color: rgb(60, 187, 155)}
+button:hover {background-color: rgb(237, 240, 71)}
 
 .container {
     margin: auto;
@@ -74,7 +77,8 @@ button:hover {background-color: rgb(60, 187, 155)}
       text-align: center;
   }
 .starquiz  p{
-     font-size: 22px;
+    text-align: justify;
+     font-size: 25px;
  }
 .starquiz  h2{
    margin: 15px 15px;
@@ -93,6 +97,16 @@ button:hover {background-color: rgb(60, 187, 155)}
 }
 .formScore input{
     height: 35px;
+}
+/*style for highscores.html*/
+h1{
+    
+    margin-bottom: 15px;
+}
+
+.listscores ol li{
+    font-size: 20px;
+    background-color: rgb(243, 235, 235);
 }
 
  /*style main end*/
