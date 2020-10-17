@@ -1,12 +1,12 @@
 
 var highScore = 100;
-var timecountdown = 25;
+var timecountdown = 100;
 var index = 0;
 var timeInterval;
 var timeEl = document.querySelector("#count");//time
-var scoreFinal=document.getElementById("final-score");//show the final score
+var scoreFinal = document.getElementById("final-score");//show the final score
 var buttonD = document.querySelector("#quiz"); //button star quiz
-var buttonHigScoreView=document.querySelector("#linkscore");
+var buttonHigScoreView = document.querySelector("#linkscore");
 var showq = document.createElement("h3")//show question on the page
 var questionAnswer = document.querySelector("#showQ");
 var listAnswer = document.createElement("ol");//order list
@@ -19,16 +19,18 @@ var ans1 = document.createElement("button");
 var ans2 = document.createElement("button");
 var ans3 = document.createElement("button");
 var ans4 = document.createElement("button");
-var input = document.createElement("input"); 
+var input = document.createElement("input");
 
 var formLabel = document.createElement("label")
 var submit = document.querySelector("#sign-up");
-var scoreForm=document.querySelector("#formScore")
- //message in the register
+var scoreForm = document.querySelector("#formScore")
+//message in the register
 
-var userinitialImput=document.querySelector("#user-initial");
-var score=document.querySelector("#user-score");
-var form=document.querySelector("#infoUser");
+var userinitialImput = document.querySelector("#user-initial");
+var score = document.querySelector("#user-score");
+var form = document.querySelector("#infoUser");
+var buttonClearStorage = document.querySelector("#clear");
+
 
 
 //array object with question,answer and the correct answer
@@ -89,92 +91,110 @@ var arrayquestion = [
 //function show the question 
 
 function showQuestions() {
-   
-  if(index===0){
-   var removeQuiz = document.getElementById("star");
-  removeQuiz.remove(); 
-   starTimer();
+
+  if (index === 0) {
+    var removeQuiz = document.getElementById("star");
+    removeQuiz.remove();
+    starTimer();
   }
-   
-   //Question [i]
+
+  //Question [i]
   showq.innerHTML = arrayquestion[index].question;
-   
-  // answers for the question [i]
-  ans1.textContent = arrayquestion[index].choices[0]
-  ans2.textContent = arrayquestion[index].choices[1]
-  ans3.textContent = arrayquestion[index].choices[2]
-  ans4.textContent = arrayquestion[index].choices[3]
-  
-  // show the dynamic element on the page
-  list1.appendChild(ans1);
-  list2.appendChild(ans2);
-  list3.appendChild(ans3);
-  list4.appendChild(ans4);
-  listAnswer.appendChild(list1);
-  listAnswer.appendChild(list2);
-  listAnswer.appendChild(list3);
-  listAnswer.appendChild(list4);
-  questionAnswer.appendChild(showq);
-  questionAnswer.appendChild(listAnswer);
+  // console.log(index)
+  // console.log(arrayquestion[index].question)
+  if (arrayquestion[index] !== 9) {
+    console.log(arrayquestion[index].question)
+    // answers for the question [i]
+    ans1.textContent = arrayquestion[index].choices[0]
+    ans2.textContent = arrayquestion[index].choices[1]
+    ans3.textContent = arrayquestion[index].choices[2]
+    ans4.textContent = arrayquestion[index].choices[3]
 
-// listener when select a answer
-  ans1.addEventListener("click", Result);
-  ans2.addEventListener("click", Result);
-  ans3.addEventListener("click", Result);
-  ans4.addEventListener("click", Result);
+    // show the dynamic element on the page
+    list1.appendChild(ans1);
+    list2.appendChild(ans2);
+    list3.appendChild(ans3);
+    list4.appendChild(ans4);
+    listAnswer.appendChild(list1);
+    listAnswer.appendChild(list2);
+    listAnswer.appendChild(list3);
+    listAnswer.appendChild(list4);
+    questionAnswer.appendChild(showq);
+    questionAnswer.appendChild(listAnswer);
 
- }
+    // listener when select a answer
+    ans1.addEventListener("click", Result);
+    ans2.addEventListener("click", Result);
+    ans3.addEventListener("click", Result);
+    ans4.addEventListener("click", Result);
+  }
+  else {
+
+    ShowScore();
+  }
+
+
+}
 
 
 //function check result 
 function Result() {
-      
-    //create element for show wrong answwer
-    var correct = document.createElement("h6")     
-    var wrong = document.createElement("h6")
-    wrong.textContent = "Wrong";
-    correct.textContent = "Correct";
-    questionAnswer.innerHTML="";
-    //style for the elements
-    correct.setAttribute("Style", "font-size:20px ;margin:15px;color:gray; text-decoration: underline");
-    wrong.setAttribute("Style", "font-size:20px ;margin:15px;color:gray; text-decoration: underline");
+
+
+  //create element for show wrong answwer
+  var correct = document.createElement("h6")
+  var wrong = document.createElement("h6")
+  wrong.textContent = "Wrong";
+  correct.textContent = "Correct";
+  
+  //style for the elements
+  correct.setAttribute("Style", "font-size:20px ;margin:15px;color:gray; text-decoration: underline");
+  wrong.setAttribute("Style", "font-size:20px ;margin:15px;color:gray; text-decoration: underline");
 
 
   //condicional for comparison the user selection with the correct answer
   if (this.textContent === arrayquestion[index].answer) {
-              
+
     questionAnswer.appendChild(correct);
-    index++;
-    if (index===arrayquestion.length){
-      ShowScore();
-    }
-    else{     
-    
-      showQuestions()
-    }
+    setTimeout(function () {
+      questionAnswer.innerHTML = "";
+      index++;
+      if (index === arrayquestion.length) {
+        ShowScore();
+
+      }
+      else {
+
+        showQuestions()
+      }
+    }, 1000)
   }
-  else {  
-      // the user selection the wrong answer      
-     // subtract 10 for time
-     if(timecountdown>=10){
-       timecountdown = timecountdown - 10;
-     }
-    
+  else {
+    // the user selection the wrong answer      
+    // subtract 10 for time
+    if (timecountdown >= 10) {
+      timecountdown = timecountdown - 10;
+    }
+
     //console.log("wrong after" ,timecountdown);
     timeEl.textContent = timecountdown;
 
     // subtract 10 for highScore
     highScore = highScore - 10;
-  console.log(highScore)
+    console.log(highScore)
     questionAnswer.appendChild(wrong);
+    setTimeout(function () { 
+      questionAnswer.innerHTML = "";
     index++;
-     
-    showQuestions()  
+
+    showQuestions()
+    },1000)
   }
+
 };// end Result() fct def
 
 
-//shor the current time
+//show the current time
 
 function starTimer() {
 
@@ -184,10 +204,10 @@ function starTimer() {
     //console.log("Time Left: ", timecountdown)
 
     timeEl.textContent = timecountdown;
- 
-    if (timecountdown=== 0) {      
+
+    if (timecountdown === 0) {
       ShowScore()
-     clearArea();
+      clearArea();
       clearInterval(timeInterval)
     }
   }, 1000);
@@ -195,70 +215,80 @@ function starTimer() {
 }
 
 
-//function clear quetsion and anserw
+//function clear questiion and anserw
 
-function clearArea(){
-  var removeAnswer= document.getElementById("showQ");
-  removeAnswer.style.display="none";
+function clearArea() {
+  var removeAnswer = document.getElementById("showQ");
+  removeAnswer.style.display = "none";
 }
 
 //function show the results to the user and save his initial
 
 function ShowScore() {
   //get the final score for the user
-  scoreFinal.textContent=highScore;
-   //show the form
-   form.style.display="block";
+  scoreFinal.textContent = highScore;
+  clearInterval(timeInterval);
+  //show the form
+  form.style.display = "block";
 };
-  //Show the las user register
 
+//Show the las user register
+var listScore = [];
 function renderLastRegistered() {
-  var inicialUser=localStorage.getItem("initial");
-   var scoreUser= localStorage.getItem("score");
-  
-  if (inicialUser && scoreUser === null) {
-    return;
-  }
 
-  var userinitialImput=inicialUser;
-  var score=scoreUser;
-    
+
+  listScore = JSON.parse(localStorage.getItem("Scores"));
+
+
+ // if (listScore) {
+
+ // }
+
+
 };
 
-    
+
 //function save localStorage
 
- function saveInformation(){
-   
-   var inicialUser=document.querySelector("#initialUser").value;
-   
-   var scoreUser= highScore;
-    //check for no  let empty
-   if (inicialUser === "") {
-    
+function saveInformation() {
+
+  var inicialUser = document.querySelector("#initialUser").value;
+  var scoreUser = highScore;
+
+
+  //check for no  let empty
+  if (inicialUser === "") {
+
     alert("Initial cannot be blank");
-    
+
   } else {
-    alert("Registered successfully");
 
-    //conversion to object
-    localStorage.setItem("initial",JSON.stringify(inicialUser) );
-    localStorage.setItem("score",JSON.stringify(scoreUser));
-    renderLastRegistered();
-     }
-  };
 
- 
+    listScore = JSON.parse(localStorage.getItem("Scores")) || [];
+    var scores = {
+      score: scoreUser,
+      initials: inicialUser
+    };
+
+    listScore.push(scores);
+    localStorage.setItem("Scores", JSON.stringify(listScore));
+
+  }
+};
+
+
 // add event listener to star quiz button
 buttonD.addEventListener("click", showQuestions);
-  
-  
-buttonHigScoreView.addEventListener("click",renderLastRegistered);
-   
-form.style.display="none";
 
 
-submit.addEventListener("click",(event)=>{
+buttonHigScoreView.addEventListener("click", renderLastRegistered);
+
+form.style.display = "none";
+
+
+submit.addEventListener("click", (event) => {
   event.preventDefault();
   saveInformation();
+  window.location.href = "highscores.html";
 })
+
